@@ -8,6 +8,7 @@ use UnexpectedValueException;
 use WebServCo\ConfigurationContract\ConfigurationServiceInterface;
 
 use function gettype;
+use function is_array;
 use function is_scalar;
 use function mb_strtoupper;
 use function sprintf;
@@ -20,7 +21,7 @@ abstract class AbstractConfigurationService implements ConfigurationServiceInter
 
     public function validateValue(mixed $value): bool
     {
-        if (!is_scalar($value) && $value !== null) {
+        if (!is_array($value) && !is_scalar($value) && $value !== null) {
             throw new UnexpectedValueException(sprintf('Invalid configuration value type: "%s".', gettype($value)));
         }
 

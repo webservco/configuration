@@ -33,10 +33,34 @@ final class ConfigurationLoader
     {
         $this->validateFilePath($filePath);
 
+        $data = $this->parseIniFile($filePath);
+
+        foreach ($data as $key => $value) {
+            // This needs to be here and not in separate method, for PHPStan..
+            if (!is_string($key)) {
+                throw new UnexpectedValueException('Configuration key is not a string.');
+            }
+
+            $this->parseValue($key, $value);
+        }
+
+        return true;
+    }
+
+    /**
+     * Get an array of data from the configuration file.
+     *
+     * The detailed return type specified in docblock is for static analysis and will have to be furhter validated.
+     * (`parse_ini_file` does not specify the detailed return type)
+     *
+     * @return array<int|string,array<bool|float|int|string|null>|bool|float|int|string|null>
+     */
+    private function parseIniFile(string $filePath): array
+    {
         /**
-         * Get an array of data from the configuration file.
+         * Detailed type for static analysis, not actually specified by `parse_ini_file`.
          *
-         * @var array<int|string,bool|float|int|string|null>
+         * @var bool|array<int|string,array<bool|float|int|string|null>|bool|float|int|string|null> $data
          */
         $data = parse_ini_file(
             $filePath,
@@ -46,30 +70,36 @@ final class ConfigurationLoader
             INI_SCANNER_TYPED,
         );
 
-        $this->validateData($data);
+        // Check array
 
-        foreach ($data as $key => $value) {
-            if (!is_string($key)) {
-                throw new UnexpectedValueException('Configuration key is not a string.');
-            }
-
-            $this->configurationSetter->validateValue($value);
-            $this->configurationSetter->set($key, $value);
-        }
-
-        return true;
-    }
-
-    /**
-     * Simple data validation.
-     *
-     * @param bool|array<int|string,bool|float|int|string|null> $data
-     */
-    private function validateData(bool|array $data): bool
-    {
         if (!is_array($data)) {
             throw new UnexpectedValueException('Configuration data is not an array.');
         }
+
+        // Rest of the data will be validated by the consumer method.
+
+        return $data;
+    }
+
+    /**
+     * Parse individual configuration value.
+     *
+     * @param array<bool|float|int|string|null>|bool|float|int|string|null $value
+     */
+    private function parseValue(string $key, array|bool|float|int|string|null $value): bool
+    {
+        if (is_array($value)) {
+            foreach ($value as $individualValue) {
+                $this->configurationSetter->validateValue($individualValue);
+                $this->configurationSetter->append($key, $individualValue);
+            }
+
+            return true;
+        }
+        // Not array.
+
+        $this->configurationSetter->validateValue($value);
+        $this->configurationSetter->set($key, $value);
 
         return true;
     }
