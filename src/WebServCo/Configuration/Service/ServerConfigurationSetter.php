@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace WebServCo\Configuration;
+namespace WebServCo\Configuration\Service;
 
-use RuntimeException;
-use WebServCo\ConfigurationContract\ConfigurationSetterInterface;
+use UnexpectedValueException;
+use WebServCo\Configuration\Contract\ConfigurationSetterInterface;
 
 use function array_key_exists;
 use function is_array;
@@ -33,7 +33,7 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
         }
 
         if (!is_array($_SERVER[$key])) {
-            throw new RuntimeException('Data is not an array.');
+            throw new UnexpectedValueException('Data is not an array.');
         }
 
         $_SERVER[$key][] = $value;

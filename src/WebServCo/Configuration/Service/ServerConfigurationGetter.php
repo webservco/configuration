@@ -2,19 +2,15 @@
 
 declare(strict_types=1);
 
-namespace WebServCo\Configuration;
+namespace WebServCo\Configuration\Service;
 
 use OutOfBoundsException;
-use RuntimeException;
 use UnexpectedValueException;
-use WebServCo\ConfigurationContract\ConfigurationGetterInterface;
+use WebServCo\Configuration\Contract\ConfigurationGetterInterface;
 
 use function array_key_exists;
-use function assert;
 use function is_array;
 use function is_bool;
-use function is_float;
-use function is_int;
 use function is_string;
 use function sprintf;
 
@@ -36,15 +32,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
             throw new OutOfBoundsException(sprintf('Configuration key "%s" does not exist.', $key));
         }
 
-        /**
-         * Docblock for static analysis.
-         */
-        $value = $_SERVER[$key];
-        assert(is_bool($value) || is_float($value) || is_int($value) || is_string($value) || $value === null);
-
-        $this->validateValue($value);
-
-        return $value;
+        return $this->getValidatedScalarValue($_SERVER[$key]);
     }
     //phpcs:enable
 
@@ -72,11 +60,12 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
 
         $this->validateArray($values);
 
+        $result = [];
         foreach ($values as $value) {
-            $this->validateValue($value);
+            $result[] = $this->getValidatedScalarValue($value);
         }
 
-        return $values;
+        return $result;
     }
     // phpcs:enable
 
@@ -103,7 +92,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
     private function validateArray(mixed $data): bool
     {
         if (!is_array($data)) {
-            throw new RuntimeException('Data is not an array.');
+            throw new UnexpectedValueException('Data is not an array.');
         }
 
         return true;
