@@ -33,7 +33,7 @@ final class PHPConfigurationLoader extends AbstractConfigurationLoader implement
          *
          * @psalm-suppress UnresolvableInclude
          */
-        $data = (include $filePath);
+        $data = (require $filePath);
 
         if (!is_array($data)) {
             throw new UnexpectedValueException('Data is not an array.');
