@@ -20,7 +20,7 @@ final class IniServerConfigurationContainer implements ConfigurationContainerInt
 
     public function getConfigurationDataProcessor(): ConfigurationDataProcessorInterface
     {
-        if (!$this->configurationDataProcessor instanceof ConfigurationDataProcessorInterface) {
+        if ($this->configurationDataProcessor === null) {
             $this->configurationDataProcessor = new ConfigurationDataProcessor($this->getConfigurationSetter());
         }
 
@@ -29,7 +29,7 @@ final class IniServerConfigurationContainer implements ConfigurationContainerInt
 
     public function getConfigurationLoader(): ConfigurationLoaderInterface
     {
-        if (!$this->configurationLoader instanceof ConfigurationLoaderInterface) {
+        if ($this->configurationLoader === null) {
             $this->configurationLoader = new IniConfigurationLoader();
         }
 
@@ -38,7 +38,7 @@ final class IniServerConfigurationContainer implements ConfigurationContainerInt
 
     public function getConfigurationSetter(): ConfigurationSetterInterface
     {
-        if (!$this->configurationSetter instanceof ConfigurationSetterInterface) {
+        if ($this->configurationSetter === null) {
             $this->configurationSetter = new ServerConfigurationSetter();
         }
 
