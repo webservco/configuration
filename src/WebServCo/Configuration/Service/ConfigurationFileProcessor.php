@@ -9,6 +9,7 @@ use WebServCo\Configuration\Contract\ConfigurationFileProcessorInterface;
 use WebServCo\Configuration\Contract\ConfigurationLoaderInterface;
 use WebServCo\Configuration\Contract\ConfigurationSetterInterface;
 
+use function rtrim;
 use function sprintf;
 
 use const DIRECTORY_SEPARATOR;
@@ -27,6 +28,8 @@ final class ConfigurationFileProcessor implements ConfigurationFileProcessorInte
         string $configurationDirectory,
         string $configurationFile,
     ): bool {
+        // Make sure path contains trailing slash (trim + add back).
+        $projectPath = rtrim($projectPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
         $configurationData = $this->configurationLoader->loadFromFile(
             sprintf('%s%s%s%s', $projectPath, $configurationDirectory, DIRECTORY_SEPARATOR, $configurationFile),
         );
