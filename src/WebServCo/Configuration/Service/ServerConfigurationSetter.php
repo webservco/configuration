@@ -19,7 +19,7 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
      * Append a configuration option to a (n optionally already existing) list containing multiple values.
      *
      * `$keyPrefix` is appended to the key to avoid conflicts with existing data.
-     * phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
+     * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function append(string $key, bool|float|int|string|null $value): bool
@@ -40,14 +40,14 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
 
         return true;
     }
-    // phpcs: enable
+    // @phpcs:enable
 
     /**
      * Set a configuration option.
      *
      * `$keyPrefix` is appended to the key to avoid conflicts with existing data.
      *
-     * phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
+     * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function set(string $key, bool|float|int|string|null $value): bool
@@ -59,5 +59,5 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
 
         return true;
     }
-    // phpcs: enable
+    // @phpcs:enable
 }

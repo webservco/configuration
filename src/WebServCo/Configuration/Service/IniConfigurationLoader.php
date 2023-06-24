@@ -20,9 +20,9 @@ final class IniConfigurationLoader extends AbstractConfigurationLoader implement
     /**
      * Load configuration data from a file and return as array.
      *
-     * phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+     * @phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
      * @return array<mixed>
-     * phpcs:enable
+     * @phpcs:enable
      */
     public function loadFromFile(string $filePath): array
     {
@@ -31,9 +31,9 @@ final class IniConfigurationLoader extends AbstractConfigurationLoader implement
         /**
          * Detailed type for static analysis, not actually specified by `parse_ini_file`.
          *
-         * phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+         * @phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
          * @var bool|array<mixed> $data
-         * phpcs: enable
+         * @phpcs:enable
          */
         $data = parse_ini_file(
             $filePath,

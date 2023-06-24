@@ -21,7 +21,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
 {
     /**
      * @see \WebServCo\Configuration\Interface\ConfigurationGetterInterface for method description.
-     * phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
+     * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function get(string $key): bool|float|int|string|null
@@ -34,12 +34,12 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
 
         return $this->getValidatedScalarValue($_SERVER[$key]);
     }
-    //phpcs:enable
+    //@phpcs:enable
 
     /**
      * Return a list of values.
      *
-     * phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
+     * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings(PHPMD.Superglobals)
      * @return array<int,bool|float|int|string|null>
      */
@@ -67,7 +67,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
 
         return $result;
     }
-    // phpcs:enable
+    // @phpcs:enable
 
     public function getBool(string $key): bool
     {

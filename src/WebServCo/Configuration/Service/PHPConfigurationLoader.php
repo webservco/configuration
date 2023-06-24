@@ -20,9 +20,9 @@ final class PHPConfigurationLoader extends AbstractConfigurationLoader implement
     /**
      * Load configuration data from a file and return as array.
      *
-     * phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+     * @phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
      * @return array<mixed>
-     * phpcs:enable
+     * @phpcs:enable
      */
     public function loadFromFile(string $filePath): array
     {

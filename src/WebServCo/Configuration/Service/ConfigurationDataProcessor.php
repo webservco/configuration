@@ -24,9 +24,9 @@ final class ConfigurationDataProcessor extends AbstractConfigurationLoader imple
     /**
      * Process configuration data
      *
-     * phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+     * @phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
      * @param array<mixed> $data
-     * phpcs:enable
+     * @phpcs:enable
      */
     public function process(array $data): bool
     {
