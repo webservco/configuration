@@ -32,7 +32,7 @@ final class ConfigurationDataProcessor extends AbstractConfigurationLoader imple
     {
         /**
          * Psalm error: "Unable to determine the type that $.. is being assigned to"
-         * However this is indeed mixed, no solution but to supress error.
+         * However this is indeed mixed, no solution but to spupress error.
          *
          * @psalm-suppress MixedAssignment
          */
@@ -56,7 +56,7 @@ final class ConfigurationDataProcessor extends AbstractConfigurationLoader imple
         if (is_array($value)) {
             /**
              * Psalm error: "Unable to determine the type that $.. is being assigned to"
-             * However this is indeed mixed, no solution but to supress error.
+             * However this is indeed mixed, no solution but to suppress error.
              *
              * @psalm-suppress MixedAssignment
              */
