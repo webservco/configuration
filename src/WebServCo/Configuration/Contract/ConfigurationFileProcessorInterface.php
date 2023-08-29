@@ -13,9 +13,5 @@ interface ConfigurationFileProcessorInterface
      * after this method is called the configuration settings will be available in the $_SERVER superglobal
      * and could be used directly (or better, use a ConfigurationGetterInterface)
      */
-    public function processConfigurationFile(
-        string $projectPath,
-        string $configurationDirectory,
-        string $configurationFile,
-    ): bool;
+    public function processConfigurationFile(string $projectPath, string $configurationDirectory, string $configurationFile): bool;
 }

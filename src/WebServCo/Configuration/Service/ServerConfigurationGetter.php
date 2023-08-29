@@ -26,8 +26,9 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
      * @see \WebServCo\Configuration\Interface\ConfigurationGetterInterface for method description.
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings(PHPMD.Superglobals)
+     * @return bool|float|int|string|null
      */
-    public function get(string $key): bool|float|int|string|null
+    public function get(string $key)
     {
         $key = $this->processKey($key);
 
@@ -102,7 +103,10 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
         return $value;
     }
 
-    private function validateArray(mixed $data): bool
+    /**
+     * @param mixed $data
+     */
+    private function validateArray($data): bool
     {
         if (!is_array($data)) {
             throw new UnexpectedValueException('Data is not an array.');
