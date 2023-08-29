@@ -11,6 +11,7 @@ use WebServCo\Configuration\Contract\ConfigurationGetterInterface;
 use function array_key_exists;
 use function is_array;
 use function is_bool;
+use function is_int;
 use function is_string;
 use function sprintf;
 
@@ -19,6 +20,8 @@ use function sprintf;
  */
 final class ServerConfigurationGetter extends AbstractConfigurationService implements ConfigurationGetterInterface
 {
+    private const MESSAGE_VALUE_TYPE_DIFFERENT = 'Data type is different than expected.';
+
     /**
      * @see \WebServCo\Configuration\Interface\ConfigurationGetterInterface for method description.
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
@@ -73,7 +76,17 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
     {
         $value = $this->get($key);
         if (!is_bool($value)) {
-            throw new UnexpectedValueException(sprintf('Value for configuration key "%s" is not boolean.', $key));
+            throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
+        }
+
+        return $value;
+    }
+
+    public function getInt(string $key): int
+    {
+        $value = $this->get($key);
+        if (!is_int($value)) {
+            throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
         }
 
         return $value;
@@ -83,7 +96,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
     {
         $value = $this->get($key);
         if (!is_string($value)) {
-            throw new UnexpectedValueException(sprintf('Value for configuration key "%s" is not string.', $key));
+            throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
         }
 
         return $value;
