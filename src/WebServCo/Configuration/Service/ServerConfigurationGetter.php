@@ -25,7 +25,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
     /**
      * @see \WebServCo\Configuration\Interface\ConfigurationGetterInterface for method description.
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
-     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings("PHPMD.Superglobals")
      */
     public function get(string $key): bool|float|int|string|null
     {
@@ -43,7 +43,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
      * Return a list of values.
      *
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
-     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings("PHPMD.Superglobals")
      * @return array<int,bool|float|int|string|null>
      */
     public function getArray(string $key): array

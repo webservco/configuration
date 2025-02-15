@@ -20,7 +20,7 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
      *
      * `$keyPrefix` is appended to the key to avoid conflicts with existing data.
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
-     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings("PHPMD.Superglobals")
      */
     public function append(string $key, bool|float|int|string|null $value): bool
     {
@@ -48,7 +48,7 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
      * `$keyPrefix` is appended to the key to avoid conflicts with existing data.
      *
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
-     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings("PHPMD.Superglobals")
      */
     public function set(string $key, bool|float|int|string|null $value): bool
     {
