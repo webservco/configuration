@@ -28,13 +28,6 @@ final class IniConfigurationLoader extends AbstractConfigurationLoader implement
     {
         $this->validateFilePath($filePath);
 
-        /**
-         * Detailed type for static analysis, not actually specified by `parse_ini_file`.
-         *
-         * @phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
-         * @var bool|array<mixed> $data
-         * @phpcs:enable
-         */
         $data = parse_ini_file(
             $filePath,
             // process_sections
