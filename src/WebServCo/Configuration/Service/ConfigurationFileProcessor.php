@@ -16,17 +16,20 @@ use const DIRECTORY_SEPARATOR;
 
 final class ConfigurationFileProcessor implements ConfigurationFileProcessorInterface
 {
-    public function __construct(
-        private ConfigurationDataProcessorInterface $configurationDataProcessor,
-        private ConfigurationLoaderInterface $configurationLoader,
-        private ConfigurationSetterInterface $configurationSetter,
-    ) {
+    private ConfigurationDataProcessorInterface $configurationDataProcessor;
+    private ConfigurationLoaderInterface $configurationLoader;
+    private ConfigurationSetterInterface $configurationSetter;
+    public function __construct(ConfigurationDataProcessorInterface $configurationDataProcessor, ConfigurationLoaderInterface $configurationLoader, ConfigurationSetterInterface $configurationSetter)
+    {
+        $this->configurationDataProcessor = $configurationDataProcessor;
+        $this->configurationLoader = $configurationLoader;
+        $this->configurationSetter = $configurationSetter;
     }
 
     public function processConfigurationFile(
         string $projectPath,
         string $configurationDirectory,
-        string $configurationFile,
+        string $configurationFile
     ): bool {
         // Make sure path contains trailing slash (trim + add back).
         $projectPath = rtrim($projectPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
