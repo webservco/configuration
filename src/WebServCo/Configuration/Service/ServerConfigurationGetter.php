@@ -10,7 +10,6 @@ use UnexpectedValueException;
 use WebServCo\Configuration\Contract\ConfigurationGetterInterface;
 
 use function array_key_exists;
-use function is_array;
 use function is_bool;
 use function is_float;
 use function is_int;
@@ -65,8 +64,6 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
          */
         $values = $_SERVER[$key];
 
-        $this->validateArray($values);
-
         $result = [];
         foreach ($values as $value) {
             $result[] = $this->getValidatedScalarValue($value);
@@ -118,18 +115,5 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
         }
 
         return $value;
-    }
-
-    /**
-     * @param array<scalar|null> $data
-     * @psalm-param array<int, scalar|null> $data
-     */
-    private function validateArray(array $data): bool
-    {
-        if (!is_array($data)) {
-            throw new UnexpectedValueException('Data is not an array.');
-        }
-
-        return true;
     }
 }

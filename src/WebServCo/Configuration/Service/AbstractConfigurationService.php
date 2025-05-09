@@ -20,10 +20,6 @@ abstract class AbstractConfigurationService implements ConfigurationServiceInter
     {
     }
 
-    /**
-     * @param scalar|array<string>|null $value
-     * @psalm-param non-empty-list<string>|scalar|null $value
-     */
     #[Override]
     public function getValidatedScalarValue(mixed $value): bool|float|int|string|null
     {
