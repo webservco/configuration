@@ -21,22 +21,23 @@ use function sprintf;
  */
 final class ServerConfigurationGetter extends AbstractConfigurationService implements ConfigurationGetterInterface
 {
-    private const string MESSAGE_VALUE_TYPE_DIFFERENT = 'Data type is different than expected.';
+    /**
+     * @var string
+     */
+    private const MESSAGE_VALUE_TYPE_DIFFERENT = 'Data type is different than expected.';
 
     /**
      * @see \WebServCo\Configuration\Interface\ConfigurationGetterInterface for method description.
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings("PHPMD.Superglobals")
+     * @return bool|float|int|string|null
      */
-    #[Override]
-    public function get(string $key): bool|float|int|string|null
+    public function get(string $key)
     {
         $key = $this->processKey($key);
-
         if (!array_key_exists($key, $_SERVER)) {
             throw new OutOfBoundsException(sprintf('Configuration key "%s" does not exist.', $key));
         }
-
         return $this->getValidatedScalarValue($_SERVER[$key]);
     }
     //@phpcs:enable
@@ -48,72 +49,59 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
      * @SuppressWarnings("PHPMD.Superglobals")
      * @return array<int,bool|float|int|string|null>
      */
-    #[Override]
     public function getArray(string $key): array
     {
         $key = $this->processKey($key);
-
         if (!array_key_exists($key, $_SERVER)) {
             throw new OutOfBoundsException(sprintf('Configuration key "%s" does not exist.', $key));
         }
-
         /**
          * Docblock for static analysis.
          *
          * @var array<int,bool|float|int|string|null> $values
          */
         $values = $_SERVER[$key];
-
         $result = [];
         foreach ($values as $value) {
             $result[] = $this->getValidatedScalarValue($value);
         }
-
         return $result;
     }
     // @phpcs:enable
 
-    #[Override]
     public function getBool(string $key): bool
     {
         $value = $this->get($key);
         if (!is_bool($value)) {
             throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
         }
-
         return $value;
     }
 
-    #[Override]
     public function getInt(string $key): int
     {
         $value = $this->get($key);
         if (!is_int($value)) {
             throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
         }
-
         return $value;
     }
 
-    #[Override]
     public function getFloat(string $key): float
     {
         $value = $this->get($key);
         if (!is_float($value)) {
             throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
         }
-
         return $value;
     }
 
-    #[Override]
     public function getString(string $key): string
     {
         $value = $this->get($key);
         if (!is_string($value)) {
             throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
         }
-
         return $value;
     }
 }

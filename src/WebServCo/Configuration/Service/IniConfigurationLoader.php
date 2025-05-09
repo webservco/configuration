@@ -25,11 +25,9 @@ final class IniConfigurationLoader extends AbstractConfigurationLoader implement
      * @return array<mixed>
      * @phpcs:enable
      */
-    #[Override]
     public function loadFromFile(string $filePath): array
     {
         $this->validateFilePath($filePath);
-
         $data = parse_ini_file(
             $filePath,
             // process_sections
@@ -37,15 +35,11 @@ final class IniConfigurationLoader extends AbstractConfigurationLoader implement
             // scanner_mode: \INI_SCANNER_TYPED - "boolean, null and integer types are preserved when possible"
             INI_SCANNER_TYPED,
         );
-
         // Check array
-
         if (!is_array($data)) {
             throw new UnexpectedValueException('Configuration data is not an array.');
         }
-
         // Rest of the data will be validated by the consumer method.
-
         return $data;
     }
 }

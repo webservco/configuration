@@ -19,33 +19,27 @@ final class IniServerConfigurationContainer implements ConfigurationContainerInt
     private ?ConfigurationLoaderInterface $configurationLoader = null;
     private ?ConfigurationSetterInterface $configurationSetter = null;
 
-    #[Override]
     public function getConfigurationDataProcessor(): ConfigurationDataProcessorInterface
     {
         if ($this->configurationDataProcessor === null) {
             $this->configurationDataProcessor = new ConfigurationDataProcessor($this->getConfigurationSetter());
         }
-
         return $this->configurationDataProcessor;
     }
 
-    #[Override]
     public function getConfigurationLoader(): ConfigurationLoaderInterface
     {
         if ($this->configurationLoader === null) {
             $this->configurationLoader = new IniConfigurationLoader();
         }
-
         return $this->configurationLoader;
     }
 
-    #[Override]
     public function getConfigurationSetter(): ConfigurationSetterInterface
     {
         if ($this->configurationSetter === null) {
             $this->configurationSetter = new ServerConfigurationSetter();
         }
-
         return $this->configurationSetter;
     }
 }

@@ -25,22 +25,18 @@ final class PHPConfigurationLoader extends AbstractConfigurationLoader implement
      * @return array<mixed>
      * @phpcs:enable
      */
-    #[Override]
     public function loadFromFile(string $filePath): array
     {
         $this->validateFilePath($filePath);
-
         /**
          * Load php file.
          *
          * @psalm-suppress UnresolvableInclude
          */
         $data = (require $filePath);
-
         if (!is_array($data)) {
             throw new UnexpectedValueException('Data is not an array.');
         }
-
         return $data;
     }
 }

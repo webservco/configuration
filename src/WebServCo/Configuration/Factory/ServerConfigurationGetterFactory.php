@@ -14,7 +14,6 @@ final class ServerConfigurationGetterFactory implements ConfigurationGetterFacto
     /**
      * Environment configuration.
      */
-    #[Override]
     public function createConfigurationGetter(): ConfigurationGetterInterface
     {
         return new ServerConfigurationGetter();
