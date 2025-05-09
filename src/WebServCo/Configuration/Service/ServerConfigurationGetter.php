@@ -11,6 +11,7 @@ use WebServCo\Configuration\Contract\ConfigurationGetterInterface;
 use function array_key_exists;
 use function is_array;
 use function is_bool;
+use function is_float;
 use function is_int;
 use function is_string;
 use function sprintf;
@@ -20,7 +21,7 @@ use function sprintf;
  */
 final class ServerConfigurationGetter extends AbstractConfigurationService implements ConfigurationGetterInterface
 {
-    private const MESSAGE_VALUE_TYPE_DIFFERENT = 'Data type is different than expected.';
+    private const string MESSAGE_VALUE_TYPE_DIFFERENT = 'Data type is different than expected.';
 
     /**
      * @see \WebServCo\Configuration\Interface\ConfigurationGetterInterface for method description.
@@ -86,6 +87,16 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
     {
         $value = $this->get($key);
         if (!is_int($value)) {
+            throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
+        }
+
+        return $value;
+    }
+
+    public function getFloat(string $key): float
+    {
+        $value = $this->get($key);
+        if (!is_float($value)) {
             throw new UnexpectedValueException(self::MESSAGE_VALUE_TYPE_DIFFERENT);
         }
 

@@ -25,5 +25,7 @@ interface ConfigurationGetterInterface extends ConfigurationServiceInterface
 
     public function getInt(string $key): int;
 
+    public function getFloat(string $key): float;
+
     public function getString(string $key): string;
 }
