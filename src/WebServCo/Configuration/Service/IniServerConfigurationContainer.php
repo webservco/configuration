@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebServCo\Configuration\Service;
 
+use Override;
 use WebServCo\Configuration\Contract\ConfigurationContainerInterface;
 use WebServCo\Configuration\Contract\ConfigurationDataProcessorInterface;
 use WebServCo\Configuration\Contract\ConfigurationLoaderInterface;
@@ -18,6 +19,7 @@ final class IniServerConfigurationContainer implements ConfigurationContainerInt
     private ?ConfigurationLoaderInterface $configurationLoader = null;
     private ?ConfigurationSetterInterface $configurationSetter = null;
 
+    #[Override]
     public function getConfigurationDataProcessor(): ConfigurationDataProcessorInterface
     {
         if ($this->configurationDataProcessor === null) {
@@ -27,6 +29,7 @@ final class IniServerConfigurationContainer implements ConfigurationContainerInt
         return $this->configurationDataProcessor;
     }
 
+    #[Override]
     public function getConfigurationLoader(): ConfigurationLoaderInterface
     {
         if ($this->configurationLoader === null) {
@@ -36,6 +39,7 @@ final class IniServerConfigurationContainer implements ConfigurationContainerInt
         return $this->configurationLoader;
     }
 
+    #[Override]
     public function getConfigurationSetter(): ConfigurationSetterInterface
     {
         if ($this->configurationSetter === null) {

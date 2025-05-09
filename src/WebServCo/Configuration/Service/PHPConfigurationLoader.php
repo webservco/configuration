@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebServCo\Configuration\Service;
 
+use Override;
 use UnexpectedValueException;
 use WebServCo\Configuration\Contract\ConfigurationLoaderInterface;
 
@@ -24,6 +25,7 @@ final class PHPConfigurationLoader extends AbstractConfigurationLoader implement
      * @return array<mixed>
      * @phpcs:enable
      */
+    #[Override]
     public function loadFromFile(string $filePath): array
     {
         $this->validateFilePath($filePath);

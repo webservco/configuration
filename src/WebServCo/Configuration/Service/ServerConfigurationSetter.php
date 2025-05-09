@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebServCo\Configuration\Service;
 
+use Override;
 use UnexpectedValueException;
 use WebServCo\Configuration\Contract\ConfigurationSetterInterface;
 
@@ -22,6 +23,7 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings("PHPMD.Superglobals")
      */
+    #[Override]
     public function append(string $key, bool|float|int|string|null $value): bool
     {
         // AbstractConfigurationService
@@ -50,6 +52,7 @@ final class ServerConfigurationSetter extends AbstractConfigurationService imple
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings("PHPMD.Superglobals")
      */
+    #[Override]
     public function set(string $key, bool|float|int|string|null $value): bool
     {
         // AbstractConfigurationService

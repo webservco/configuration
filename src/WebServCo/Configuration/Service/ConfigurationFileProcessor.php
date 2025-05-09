@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebServCo\Configuration\Service;
 
+use Override;
 use WebServCo\Configuration\Contract\ConfigurationDataProcessorInterface;
 use WebServCo\Configuration\Contract\ConfigurationFileProcessorInterface;
 use WebServCo\Configuration\Contract\ConfigurationLoaderInterface;
@@ -23,6 +24,7 @@ final class ConfigurationFileProcessor implements ConfigurationFileProcessorInte
     ) {
     }
 
+    #[Override]
     public function processConfigurationFile(
         string $projectPath,
         string $configurationDirectory,

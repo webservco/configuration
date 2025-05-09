@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebServCo\Configuration\Factory;
 
+use Override;
 use WebServCo\Configuration\Contract\ConfigurationGetterFactoryInterface;
 use WebServCo\Configuration\Contract\ConfigurationGetterInterface;
 use WebServCo\Configuration\Service\ServerConfigurationGetter;
@@ -13,6 +14,7 @@ final class ServerConfigurationGetterFactory implements ConfigurationGetterFacto
     /**
      * Environment configuration.
      */
+    #[Override]
     public function createConfigurationGetter(): ConfigurationGetterInterface
     {
         return new ServerConfigurationGetter();

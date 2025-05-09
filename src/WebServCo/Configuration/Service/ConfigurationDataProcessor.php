@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebServCo\Configuration\Service;
 
+use Override;
 use UnexpectedValueException;
 use WebServCo\Configuration\Contract\ConfigurationDataProcessorInterface;
 use WebServCo\Configuration\Contract\ConfigurationSetterInterface;
@@ -28,6 +29,7 @@ final class ConfigurationDataProcessor extends AbstractConfigurationLoader imple
      * @param array<mixed> $data
      * @phpcs:enable
      */
+    #[Override]
     public function process(array $data): bool
     {
         /**

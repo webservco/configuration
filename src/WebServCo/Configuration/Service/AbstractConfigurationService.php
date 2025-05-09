@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebServCo\Configuration\Service;
 
+use Override;
 use UnexpectedValueException;
 use WebServCo\Configuration\Contract\ConfigurationServiceInterface;
 
@@ -19,6 +20,11 @@ abstract class AbstractConfigurationService implements ConfigurationServiceInter
     {
     }
 
+    /**
+     * @param scalar|array<string>|null $value
+     * @psalm-param non-empty-list<string>|scalar|null $value
+     */
+    #[Override]
     public function getValidatedScalarValue(mixed $value): bool|float|int|string|null
     {
         if (!is_scalar($value) && $value !== null) {
@@ -31,6 +37,7 @@ abstract class AbstractConfigurationService implements ConfigurationServiceInter
     /**
      * @return array<bool|float|int|string|null>|bool|float|int|string|null
      */
+    #[Override]
     public function getValidatedValue(mixed $value): array|bool|float|int|string|null
     {
         if (is_array($value)) {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WebServCo\Configuration\Service;
 
 use OutOfBoundsException;
+use Override;
 use UnexpectedValueException;
 use WebServCo\Configuration\Contract\ConfigurationGetterInterface;
 
@@ -28,6 +29,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings("PHPMD.Superglobals")
      */
+    #[Override]
     public function get(string $key): bool|float|int|string|null
     {
         $key = $this->processKey($key);
@@ -47,6 +49,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
      * @SuppressWarnings("PHPMD.Superglobals")
      * @return array<int,bool|float|int|string|null>
      */
+    #[Override]
     public function getArray(string $key): array
     {
         $key = $this->processKey($key);
@@ -73,6 +76,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
     }
     // @phpcs:enable
 
+    #[Override]
     public function getBool(string $key): bool
     {
         $value = $this->get($key);
@@ -83,6 +87,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
         return $value;
     }
 
+    #[Override]
     public function getInt(string $key): int
     {
         $value = $this->get($key);
@@ -93,6 +98,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
         return $value;
     }
 
+    #[Override]
     public function getFloat(string $key): float
     {
         $value = $this->get($key);
@@ -103,6 +109,7 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
         return $value;
     }
 
+    #[Override]
     public function getString(string $key): string
     {
         $value = $this->get($key);
@@ -113,7 +120,11 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
         return $value;
     }
 
-    private function validateArray(mixed $data): bool
+    /**
+     * @param array<scalar|null> $data
+     * @psalm-param array<int, scalar|null> $data
+     */
+    private function validateArray(array $data): bool
     {
         if (!is_array($data)) {
             throw new UnexpectedValueException('Data is not an array.');
