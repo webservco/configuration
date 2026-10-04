@@ -11,8 +11,9 @@ interface ConfigurationGetterInterface extends ConfigurationServiceInterface
      *
      * Key is processed / validated, and should be used without the prefix.
      * Return types are the ones supported by the setter.
-    */
-    public function get(string $key): bool|float|int|string|null;
+     * @return bool|float|int|string|null
+     */
+    public function get(string $key);
 
     /**
      * Return a list of values.

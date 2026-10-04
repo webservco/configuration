@@ -16,12 +16,18 @@ use function sprintf;
 
 abstract class AbstractConfigurationService implements ConfigurationServiceInterface
 {
-    public function __construct(protected string $keyPrefix = 'APP_')
+    protected string $keyPrefix = 'APP_';
+    public function __construct(string $keyPrefix = 'APP_')
     {
+        $this->keyPrefix = $keyPrefix;
     }
 
+    /**
+     * @return bool|float|int|string|null
+     * @param mixed $value
+     */
     #[Override]
-    public function getValidatedScalarValue(mixed $value): bool|float|int|string|null
+    public function getValidatedScalarValue($value)
     {
         if (!is_scalar($value) && $value !== null) {
             throw new UnexpectedValueException(sprintf('Invalid configuration value type: "%s".', gettype($value)));
@@ -32,9 +38,10 @@ abstract class AbstractConfigurationService implements ConfigurationServiceInter
 
     /**
      * @return array<bool|float|int|string|null>|bool|float|int|string|null
+     * @param mixed $value
      */
     #[Override]
-    public function getValidatedValue(mixed $value): array|bool|float|int|string|null
+    public function getValidatedValue($value)
     {
         if (is_array($value)) {
             $result = [];
