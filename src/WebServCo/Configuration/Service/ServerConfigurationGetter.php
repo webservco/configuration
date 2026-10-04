@@ -73,6 +73,11 @@ final class ServerConfigurationGetter extends AbstractConfigurationService imple
     }
     // @phpcs:enable
 
+    /**
+     * Typed value getter, named like the other get<Type> methods; renaming would break BC.
+     *
+     * @SuppressWarnings("PHPMD.BooleanGetMethodName")
+     */
     #[Override]
     public function getBool(string $key): bool
     {

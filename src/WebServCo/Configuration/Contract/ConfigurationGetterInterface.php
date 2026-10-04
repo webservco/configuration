@@ -21,6 +21,11 @@ interface ConfigurationGetterInterface extends ConfigurationServiceInterface
      */
     public function getArray(string $key): array;
 
+    /**
+     * Typed value getter, named like the other get<Type> methods; renaming would break BC.
+     *
+     * @SuppressWarnings("PHPMD.BooleanGetMethodName")
+     */
     public function getBool(string $key): bool;
 
     public function getInt(string $key): int;
