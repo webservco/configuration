@@ -20,7 +20,7 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
-    "description" : "A PHP component/library.",
+    "description" : "A PHP component/library. Loads configuration from an INI or PHP file and gives typed access to the values anywhere in the application.",
     "homepage" : "https://webserv.co",
     "keywords" : [
         "component",
