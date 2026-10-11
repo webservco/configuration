@@ -21,15 +21,19 @@ use function sprintf;
  */
 final class ServerConfigurationGetter extends AbstractConfigurationService implements ConfigurationGetterInterface
 {
-    private const string MESSAGE_VALUE_TYPE_DIFFERENT = 'Data type is different than expected.';
+    /**
+     * @var string
+     */
+    private const MESSAGE_VALUE_TYPE_DIFFERENT = 'Data type is different than expected.';
 
     /**
      * @see \WebServCo\Configuration\Interface\ConfigurationGetterInterface for method description.
      * @phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
      * @SuppressWarnings("PHPMD.Superglobals")
+     * @return bool|float|int|string|null
      */
     #[Override]
-    public function get(string $key): bool|float|int|string|null
+    public function get(string $key)
     {
         $key = $this->processKey($key);
 

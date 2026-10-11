@@ -18,8 +18,10 @@ use function is_string;
 final class ConfigurationDataProcessor extends AbstractConfigurationLoader implements
     ConfigurationDataProcessorInterface
 {
-    public function __construct(private ConfigurationSetterInterface $configurationSetter)
+    private ConfigurationSetterInterface $configurationSetter;
+    public function __construct(ConfigurationSetterInterface $configurationSetter)
     {
+        $this->configurationSetter = $configurationSetter;
     }
 
     /**
@@ -52,8 +54,9 @@ final class ConfigurationDataProcessor extends AbstractConfigurationLoader imple
 
     /**
      * Process individual configuration value.
+     * @param mixed $value
      */
-    private function processValue(string $key, mixed $value): bool
+    private function processValue(string $key, $value): bool
     {
         if (is_array($value)) {
             /**

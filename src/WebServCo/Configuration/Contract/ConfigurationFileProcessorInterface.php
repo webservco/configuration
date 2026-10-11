@@ -16,6 +16,6 @@ interface ConfigurationFileProcessorInterface
     public function processConfigurationFile(
         string $projectPath,
         string $configurationDirectory,
-        string $configurationFile,
+        string $configurationFile
     ): bool;
 }
